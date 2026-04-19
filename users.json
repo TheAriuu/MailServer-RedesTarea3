@@ -1,0 +1,18 @@
+{
+  "_comment": "User credentials for the POP3 server.",
+  "_comment2": "Use 'password_hash' (sha256) in production; 'password' is for dev only.",
+  "_comment3": "Generate hash: python3 -c \"import hashlib; print(hashlib.sha256(b'secret').hexdigest())\"",
+
+  "alice@example.com": {
+    "password_hash": "2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b",
+    "domain": "example.com"
+  },
+  "bob@example.com": {
+    "password": "password123",
+    "domain": "example.com"
+  },
+  "admin@example.com": {
+    "password_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    "domain": "example.com"
+  }
+}

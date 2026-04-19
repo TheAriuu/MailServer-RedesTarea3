@@ -1,0 +1,26 @@
+# requirements.txt — Mail Server Dependencies
+#
+# Install:
+#   pip install -r requirements.txt
+#
+# System packages also required:
+#   sudo apt install openssl python3-openssl
+#   (Debian/Ubuntu)
+
+# Core framework
+Twisted[tls,conch,smtp,pop3,jabber]>=23.0.0
+
+# Zope interface (Twisted dependency)
+zope.interface>=6.0
+
+# pyOpenSSL for TLS support
+pyOpenSSL>=23.0.0
+
+# Service identity for certificate validation
+service-identity>=23.0.0
+
+# Cryptography backend
+cryptography>=41.0.0
+
+# Optional: coloured log output
+colorlog>=6.7.0
