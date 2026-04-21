@@ -181,17 +181,12 @@ def send_one(smtp_kwargs: dict, sender: str, recipient: str, msg: MIMEMultipart)
 # ---------------------------------------------------------------------------
 
 def main():
-    # add_help=False lets us reclaim -h for --host (spec requirement).
-    # Help is still available via --help.
     parser = argparse.ArgumentParser(
         description="Personalised Bulk SMTP Client",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
-        add_help=False,
     )
-    parser.add_argument("--help", action="help",
-                        help="Show this help message and exit")
-    parser.add_argument("-h", "--host",     required=True,
+    parser.add_argument("-H", "--host",     required=True,
                         help="Mail server host[:port]")
     parser.add_argument("-c", "--csv",      required=True,
                         help="CSV file with recipients")
