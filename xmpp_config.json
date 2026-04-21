@@ -1,13 +1,7 @@
 {
   "jid":       "mailbot@xmpp-server.com",
-  "password":  "your_xmpp_password_here",
+  "password":  "xmpp_password",
   "server":    "xmpp-server.com",
   "port":      5222,
-  "recipient": "admin@xmpp-server.com",
-
-  "_comment": "user_mapping overrides the default recipient for specific email accounts",
-  "user_mapping": {
-    "alice@mydomain.com": "alice@jabber.example.org",
-    "bob@mydomain.com":   "bob@xmpp-server.com"
-  }
+  "recipient": "admin@xmpp-server.com"
 }
