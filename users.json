@@ -1,8 +1,5 @@
 {
   "_comment": "User credentials for the POP3 server.",
-  "_comment2": "Use 'password_hash' (sha256) in production; 'password' is for dev only.",
-  "_comment3": "Generate hash: python3 -c \"import hashlib; print(hashlib.sha256(b'secret').hexdigest())\"",
-
   "alice@example.com": {
     "password_hash": "2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b",
     "domain": "example.com"
@@ -14,5 +11,21 @@
   "admin@example.com": {
     "password_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
     "domain": "example.com"
+  },
+  "donpollo@mydomain.test": {
+    "password_hash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "domain": "mydomain.test"
+  },
+  "leon@mydomain.test": {
+    "password_hash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "domain": "mydomain.test"
+  },
+  "renoir@mydomain.test": {
+    "password_hash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "domain": "mydomain.test"
+  },
+  "steve@mydomain.test": {
+    "password_hash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "domain": "mydomain.test"
   }
 }
