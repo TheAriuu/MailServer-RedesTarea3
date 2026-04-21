@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Modulo para el mail storage
+Módulo para el mail storage
 Gestiona la persistencia de correo electrónico basada en el sistema 
 de archivos utilizada por los servidores SMTP y POP3.
 """
