@@ -1,0 +1,19 @@
+From: noreply@mydomain.com
+Subject: Bienvenido/a {{name}} — Noticias de {{company}}
+Attachment: examples/sample_attachment.txt
+---
+Estimado/a {{name}},
+
+Esperamos que se encuentre muy bien en {{city}}.
+
+En nombre de todo el equipo de {{company}}, le estamos enviando este
+correo de prueba para verificar que su conexión a nuestro servicio de
+mensajería está funcionando correctamente.
+
+Si tiene interés de seguir en contacto no dude en visitar nuestras redes sociales.
+
+Saludos,
+El Equipo de {{company}}
+
+──────────────────────────────────────────────────────
+Para dejar de recibir estos correos responde con UNSUBSCRIBE.
