@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
 """
-mailstorage.py - Shared Mail Storage Module
-Handles filesystem-based email persistence used by SMTP and POP3 servers.
-
-Directory layout:
-  <base_path>/
-    <domain>/
-      <user>/
-        index.json          ← metadata index
-        YYYYMMDD_HHmmss_uid.eml  ← raw RFC-2822 message files
+Modulo para el mail storage
+Gestiona la persistencia de correo electrónico basada en el sistema 
+de archivos utilizada por los servidores SMTP y POP3.
 """
 
 import os
@@ -22,14 +16,12 @@ logger = logging.getLogger(__name__)
 
 
 class MailStorage:
-    """Filesystem-based mail storage with JSON index per mailbox."""
+    """Almacenamiento de correo basado en sistema de archivos con índice JSON por buzón."""
 
     def __init__(self, base_path: str):
         self.base_path = os.path.abspath(base_path)
         os.makedirs(self.base_path, exist_ok=True)
-        logger.info(f"MailStorage initialised at {self.base_path}")
-
-    # ------------------------------------------------------------------ paths
+        logger.info(f"MailStorage inicializado en {self.base_path}")
 
     def _mailbox_path(self, user: str, domain: str) -> str:
         path = os.path.join(self.base_path, domain.lower(), user.lower())
@@ -38,8 +30,6 @@ class MailStorage:
 
     def _index_path(self, user: str, domain: str) -> str:
         return os.path.join(self._mailbox_path(user, domain), "index.json")
-
-    # ------------------------------------------------------------------ index
 
     def _load_index(self, user: str, domain: str) -> list:
         path = self._index_path(user, domain)
@@ -56,12 +46,10 @@ class MailStorage:
         with open(self._index_path(user, domain), "w", encoding="utf-8") as f:
             json.dump(index, f, indent=2, ensure_ascii=False)
 
-    # ------------------------------------------------------------------ write
-
     def save_message(self, user: str, domain: str, message_data: bytes) -> str:
         """
-        Persist *message_data* (raw RFC-2822 bytes) and update the index.
-        Returns the full path to the saved file.
+        Conserva los datos del mensaje (bytes RFC-2822 sin procesar) y actualiza el índice.
+        Devuelve la ruta completa al archivo guardado.
         """
         mailbox = self._mailbox_path(user, domain)
         ts = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
@@ -73,7 +61,7 @@ class MailStorage:
             f.write(message_data)
 
         self._append_index(user, domain, filename, message_data)
-        logger.info(f"Message saved → {filepath}")
+        logger.info(f"Mensaje guardado en: {filepath}")
         return filepath
 
     def _append_index(self, user, domain, filename, message_data):
@@ -101,8 +89,6 @@ class MailStorage:
         index.append(entry)
         self._save_index(user, domain, index)
 
-    # ------------------------------------------------------------------ read
-
     def list_messages(self, user: str, domain: str) -> list:
         """Return sorted list of (filename, bytes) for all messages."""
         mailbox = self._mailbox_path(user, domain)
@@ -122,8 +108,6 @@ class MailStorage:
         with open(path, "rb") as f:
             return f.read()
 
-    # ------------------------------------------------------------------ delete
-
     def delete_message(self, user: str, domain: str, filename: str) -> bool:
         path = os.path.join(self._mailbox_path(user, domain), filename)
         if not os.path.exists(path):
@@ -133,8 +117,6 @@ class MailStorage:
         self._save_index(user, domain, index)
         logger.info(f"Deleted {filename} for {user}@{domain}")
         return True
-
-    # ------------------------------------------------------------------ helpers
 
     def mark_as_read(self, user: str, domain: str, filename: str):
         index = self._load_index(user, domain)
@@ -150,8 +132,8 @@ class MailStorage:
         return os.path.isdir(os.path.join(self.base_path, domain.lower(), user.lower()))
 
     def create_user(self, user: str, domain: str):
-        self._mailbox_path(user, domain)  # creates dir
-        logger.info(f"Mailbox created for {user}@{domain}")
+        self._mailbox_path(user, domain)  # crear el dir
+        logger.info(f"Buzón creado para {user}@{domain}")
 
     def list_users(self, domain: str) -> list:
         domain_path = os.path.join(self.base_path, domain.lower())
