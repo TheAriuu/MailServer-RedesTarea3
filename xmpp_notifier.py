@@ -107,8 +107,6 @@ class XMPPNotifier:
             logger.info("XMPP: not connected yet, queuing notification")
             self._pending.append(msg_text)
 
-    # ------------------------------------------------------------------ private
-
     def _send_raw(self, body: str, to_jid: str):
         msg = domish.Element(("jabber:client", "message"))
         msg["to"] = to_jid
@@ -117,8 +115,7 @@ class XMPPNotifier:
         self._xml_stream.send(msg)
         logger.info(f"XMPP notification sent → {to_jid}")
 
-    # ------------------------------------------------------------------ factory
-
+    #Factory:
     @classmethod
     def from_file(cls, config_path: str) -> "XMPPNotifier":
         with open(config_path, "r", encoding="utf-8") as f:
